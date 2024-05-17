@@ -1,0 +1,9 @@
+interfaces\IFiltrarPaginado.class
+data\FiltrarPaginado.class
+data\FiltrarISBN.class
+excepciones\FlitroException.class
+interfaces\IFiltrarISBNServices.class
+interfaces\IFiltrarTituloServices.class
+data\FiltrarTitulo.class
+data\FiltrarGenero.class
+interfaces\IFiltrarGeneroServices.class

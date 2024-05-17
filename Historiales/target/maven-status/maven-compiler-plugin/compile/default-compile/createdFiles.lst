@@ -1,0 +1,12 @@
+excepciones\HistorialFiltrarLibrosExcepcion.class
+data\HistorialVentasPorLibro.class
+interfaz\IHistorialAdeudoService.class
+data\HistorialPrestamosPorLibro.class
+excepciones\HistorialVentasExcepciones.class
+interfaz\IHistorialPrestamosService.class
+interfaz\IHistorialVentasService.class
+excepciones\HistorialPrestamosExcepciones.class
+interfaz\IHistorialLibrosService.class
+data\HistorialFiltrarLibros.class
+data\HistorialAdeudoPorAlumno.class
+excepciones\HistorialAlumnoExcepciones.class
