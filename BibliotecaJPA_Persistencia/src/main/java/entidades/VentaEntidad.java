@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 /**
@@ -91,6 +92,15 @@ public class VentaEntidad implements Serializable {
     public void setId(Long id_venta) {
         this.id_venta = id_venta;
     }
+    
+      @PrePersist
+    protected void onCreate() {
+        if (this.fechaVenta == null) {
+            this.fechaVenta = Calendar.getInstance();
+            fechaVenta.add(Calendar.HOUR_OF_DAY, -7);
+        }
+    }
+
 
     @Override
     public int hashCode() {

@@ -7,6 +7,7 @@ package dao;
 import entidades.AlumnoEntidad;
 import excepciones.AlumnoExcepcion;
 import interfaces.IAlumnoDAO;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -33,7 +34,11 @@ public class AlumnoDAO implements IAlumnoDAO {
 
         try {
             Query query = entityManager.createQuery("SELECT a FROM AlumnoEntidad a");
-            return query.getResultList();
+            List<AlumnoEntidad> alumnos = query.getResultList();
+            if (alumnos == null) {
+                return new ArrayList<>();  // Devuelve una lista vacía si no hay resultados
+            }
+            return alumnos;
         } catch (Exception e) {
             throw new AlumnoExcepcion("Error al obtener la lista de alumnos");
         }
@@ -54,9 +59,9 @@ public class AlumnoDAO implements IAlumnoDAO {
                     + "    THEN DATEDIFF(CURRENT_DATE(), p.fechaDevolucion) * pa.costo "
                     + "    ELSE 0 "
                     + "END) AS suma_cuotas_adeudadas "
-                    + "FROM prestamos p "
-                    + "INNER JOIN alumnos a ON a.id_persona = p.id_alumno "
-                    + "INNER JOIN precioadeudo pa ON pa.id_adeudo = p.id_adeudo "
+                    + "FROM alumnos a "
+                    + "LEFT JOIN prestamos p ON a.id_persona = p.id_alumno "
+                    + "LEFT JOIN precioadeudo pa ON pa.id_adeudo = p.id_adeudo "
                     + "GROUP BY a.nombreUsuario, a.correo";
 
             Query query = entityManager.createNativeQuery(sql);
@@ -93,7 +98,7 @@ public class AlumnoDAO implements IAlumnoDAO {
             AlumnoEntidad alumno = query.getSingleResult();
             return alumno;
         } catch (NoResultException e) {
-            throw new AlumnoExcepcion("No se encontró el libro con el ISBN proporcionado.");
+            throw new AlumnoExcepcion("No se encontró el libro con el nombreUsuario proporcionado.");
         } finally {
             entityManager.close();
         }

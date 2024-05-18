@@ -4,7 +4,7 @@
  */
 package Negocio;
 
-import DTO.AdministradorDTO;
+import DTO.AdministradorInicioSesionDTO;
 import Excepcion.NegocioException;
 import convertidores.AdministradorConverter;
 import dao.AdministradorDAO;
@@ -30,13 +30,13 @@ public class AdministradorBO implements IAdministradorBO {
     }
 
     @Override
-    public List<AdministradorDTO> listaAdministradores() throws NegocioException {
-        List<AdministradorDTO> administradoresDTO = new ArrayList<>();
+    public List<AdministradorInicioSesionDTO> listaAdministradores() throws NegocioException {
+        List<AdministradorInicioSesionDTO> administradoresDTO = new ArrayList<>();
 
         try {
             List<AdministradorEntidad> administradoresEntidad = administradorDAO.listaAdministradores();
             for (AdministradorEntidad administradorEntidad : administradoresEntidad) {
-                AdministradorDTO administradorDTO = AdministradorConverter.convertirAdministradorAAdministradorDTO(administradorEntidad);
+                AdministradorInicioSesionDTO administradorDTO = AdministradorConverter.convertirAdministradorAAdministradorDTO(administradorEntidad);
                 administradoresDTO.add(administradorDTO);
             }
         } catch (AdministradorExcepcion ex) {

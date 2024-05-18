@@ -7,6 +7,7 @@ package dao;
 import entidades.AdministradorEntidad;
 import excepciones.AdministradorExcepcion;
 import interfaces.IAdministradorDAO;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -29,8 +30,12 @@ public class AdministradorDAO implements IAdministradorDAO {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         try {
-            Query query = entityManager.createQuery("SELECT a FROM Administrador a");
-            return query.getResultList();
+            Query query = entityManager.createQuery("SELECT a FROM AdministradorEntidad a");
+            List<AdministradorEntidad> administradores = query.getResultList();
+            if (administradores == null) {
+                return new ArrayList<>();  // Devuelve una lista vacía si no hay resultados
+            }
+            return administradores;
         } catch (Exception e) {
             throw new AdministradorExcepcion("Error al obtener la lista de administradores");
         }

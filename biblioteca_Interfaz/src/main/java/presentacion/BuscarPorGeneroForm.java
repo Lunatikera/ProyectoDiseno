@@ -5,46 +5,45 @@
 package presentacion;
 
 import DTO.LibroDTO;
-import Excepcion.NegocioException;
-import Negocio.LibroBO;
+
+import data.FiltrarGenero;
+import excepciones.FlitroException;
 import guardado.Guardado;
-import interfaces.ILibroBO;
+import interfaces.IFiltrarGeneroServices;
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 /**
  *
- * @author skevi
+ * @author Rios
  */
 public class BuscarPorGeneroForm extends javax.swing.JFrame {
 
-    private ILibroBO libros;
+    private IFiltrarGeneroServices filtrarGenero;
     private int pagina = 0;
     private int contadorPagina = 1;
     private final int LIMITE = 4;
     private JButton[] botones;
     private JLabel[] labels;
-    private int totalPaginas;
     private List<LibroDTO> librosCargados;
+    private int totalPaginas;
 
     /**
      * Creates new form Menu
      */
     public BuscarPorGeneroForm() {
         initComponents();
+
         this.librosCargados = new ArrayList<>();
-        this.libros = new LibroBO();
-        this.setSize(380, 600);
+        this.filtrarGenero = new FiltrarGenero();
         this.setLocationRelativeTo(this);
+        this.setSize(1119, 639);
+        this.setResizable(false);
         this.botones = new JButton[4];
         botones[0] = btnLibro1;
         botones[1] = btnLibro2;
@@ -56,6 +55,7 @@ public class BuscarPorGeneroForm extends javax.swing.JFrame {
         labels[2] = txtLibro3;
         labels[3] = txtLibro4;
         this.cargarMetodosIniciales();
+        titulo.setText(Guardado.getGenero());
 
     }
 
@@ -79,42 +79,88 @@ public class BuscarPorGeneroForm extends javax.swing.JFrame {
         txtLibro2 = new javax.swing.JLabel();
         txtLibro3 = new javax.swing.JLabel();
         txtLibro4 = new javax.swing.JLabel();
-        btnAtras = new javax.swing.JButton();
-        btnSiguiente = new javax.swing.JButton();
-        contPagina = new javax.swing.JLabel();
         btnLibro1 = new javax.swing.JButton();
         btnLibro2 = new javax.swing.JButton();
         btnLibro3 = new javax.swing.JButton();
         btnLibro4 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        titulo = new javax.swing.JLabel();
+        btnSiguiente = new javax.swing.JButton();
+        btnAtras = new javax.swing.JButton();
+        contPagina = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         brnUsuario = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        btnBuscar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 51));
+        setPreferredSize(new java.awt.Dimension(930, 645));
 
+        jPanel1.setBackground(new java.awt.Color(88, 88, 95));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtLibro1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        txtLibro1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtLibro1.setText("EL PODER DE ESTAR SOLO");
         txtLibro1.setToolTipText("");
+        jPanel1.add(txtLibro1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 370, 170, -1));
 
-        txtLibro2.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        txtLibro2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtLibro2.setText("EL PAIS DE UN SOLO HOMBRE");
+        jPanel1.add(txtLibro2, new org.netbeans.lib.awtextra.AbsoluteConstraints(325, 370, 180, -1));
 
-        txtLibro3.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        txtLibro3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtLibro3.setText("PERCY JACKSON");
+        jPanel1.add(txtLibro3, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 370, 170, -1));
 
-        txtLibro4.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        txtLibro4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtLibro4.setText("ORGULLO Y PREJUICIO");
+        jPanel1.add(txtLibro4, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 360, 170, 50));
 
-        btnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/angulo-izquierdo.png"))); // NOI18N
-        btnAtras.addActionListener(new java.awt.event.ActionListener() {
+        btnLibro1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAtrasActionPerformed(evt);
+                btnLibro1ActionPerformed(evt);
             }
         });
+        jPanel1.add(btnLibro1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 167, 217));
+
+        btnLibro2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLibro2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnLibro2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, 167, 217));
+
+        btnLibro3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLibro3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnLibro3, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 140, 167, 217));
+
+        btnLibro4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLibro4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnLibro4, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 140, 167, 217));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 400, 458, -1));
+
+        titulo.setFont(new java.awt.Font("Franklin Gothic Demi Cond", 1, 48)); // NOI18N
+        titulo.setText("Genero");
+        jPanel1.add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, 600, 70));
 
         btnSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/angulo-derecho.png"))); // NOI18N
         btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
@@ -122,98 +168,21 @@ public class BuscarPorGeneroForm extends javax.swing.JFrame {
                 btnSiguienteActionPerformed(evt);
             }
         });
+        jPanel1.add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 460, 50, 30));
 
-        contPagina.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/angulo-izquierdo.png"))); // NOI18N
+        btnAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 460, 50, 30));
+
+        contPagina.setFont(new java.awt.Font("Segoe UI Black", 0, 36)); // NOI18N
         contPagina.setText("1");
+        jPanel1.add(contPagina, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 450, 50, -1));
 
-        btnLibro1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLibro1ActionPerformed(evt);
-            }
-        });
-
-        btnLibro2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLibro2ActionPerformed(evt);
-            }
-        });
-
-        btnLibro3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLibro3ActionPerformed(evt);
-            }
-        });
-
-        btnLibro4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLibro4ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtLibro3)
-                                .addGap(56, 56, 56))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnAtras)
-                                .addGap(18, 18, 18)
-                                .addComponent(contPagina, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtLibro1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnLibro3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnLibro1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSiguiente)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtLibro2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtLibro4)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnLibro2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnLibro4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(22, 22, 22)))
-                .addContainerGap(11, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnLibro2, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                    .addComponent(btnLibro1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtLibro1)
-                    .addComponent(txtLibro2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnLibro4, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLibro3, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtLibro4, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtLibro3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAtras)
-                    .addComponent(contPagina)
-                    .addComponent(btnSiguiente))
-                .addContainerGap(29, Short.MAX_VALUE))
-        );
-
-        jPanel2.setBackground(new java.awt.Color(51, 102, 255));
+        jPanel2.setBackground(new java.awt.Color(88, 138, 135));
 
         brnUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/flecha-pequena-izquierda.png"))); // NOI18N
         brnUsuario.setContentAreaFilled(false);
@@ -223,42 +192,31 @@ public class BuscarPorGeneroForm extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/menu-hamburguesa.png"))); // NOI18N
-        jButton1.setContentAreaFilled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/busqueda.png"))); // NOI18N
+        btnBuscar.setContentAreaFilled(false);
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
             }
         });
-
-        jLabel1.setText("Menu Principal");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(brnUsuario)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                .addGap(62, 62, 62)
-                .addComponent(jButton1)
-                .addGap(25, 25, 25))
+                .addComponent(brnUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(brnUsuario)
-                            .addComponent(jButton1)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                    .addComponent(brnUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -266,30 +224,91 @@ public class BuscarPorGeneroForm extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1119, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void brnUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnUsuarioActionPerformed
+        BuscarForm buscar = new BuscarForm();
+        buscar.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_brnUsuarioActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        BuscarForm buscar = new BuscarForm();
+        buscar.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnLibro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLibro1ActionPerformed
+        LibroDTO libro = librosCargados.get(0);
+        Guardado.setIsbn(libro.getISBNDTO());
+        LibroPresentacionForm libroForm = new LibroPresentacionForm();
+        libroForm.setVisible(true);
+    }//GEN-LAST:event_btnLibro1ActionPerformed
+
+    private void btnLibro2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLibro2ActionPerformed
+
+        LibroDTO libro = librosCargados.get(1);
+        Guardado.setIsbn(libro.getISBNDTO());
+        LibroPresentacionForm libroForm = new LibroPresentacionForm();
+        libroForm.setVisible(true);
+    }//GEN-LAST:event_btnLibro2ActionPerformed
+
+    private void btnLibro3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLibro3ActionPerformed
+        LibroDTO libro = librosCargados.get(2);
+        Guardado.setIsbn(libro.getISBNDTO());
+        LibroPresentacionForm libroForm = new LibroPresentacionForm();
+        libroForm.setVisible(true);
+    }//GEN-LAST:event_btnLibro3ActionPerformed
+
+    private void btnLibro4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLibro4ActionPerformed
+        LibroDTO libro = librosCargados.get(3);
+        Guardado.setIsbn(libro.getISBNDTO());
+        LibroPresentacionForm libroForm = new LibroPresentacionForm();
+        libroForm.setVisible(true);
+    }//GEN-LAST:event_btnLibro4ActionPerformed
+
+    private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
+        contadorPagina++;
+        contPagina.setText(String.valueOf(contadorPagina));
+        if (this.pagina < this.totalPaginas - 1) {
+            this.pagina++;
+            this.cargarLibros();
+            this.verificarBotonesNavegacion();
+        }
+    }//GEN-LAST:event_btnSiguienteActionPerformed
+
+    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
+        contadorPagina--;
+        contPagina.setText(String.valueOf(contadorPagina));
+        if (this.pagina > 0) {
+            this.pagina--;
+            this.cargarLibros();
+            this.verificarBotonesNavegacion();
+        }
+    }//GEN-LAST:event_btnAtrasActionPerformed
     private void cargarLibros() {
         try {
 
-            this.totalPaginas = (int) Math.ceil((double) this.libros.listaLibrosGenero(Guardado.getGenero()).size() / this.LIMITE);
+            this.totalPaginas = (int) Math.ceil((double) this.filtrarGenero.listaLibrosGenero(Guardado.getGenero()).size() / this.LIMITE);
             // Calcular el índice inicial del libro para esta página
             int startIndex = this.pagina * this.LIMITE;
 
-            if (!libros.listaLibrosGenero(Guardado.getGenero()).isEmpty()) {
-                int endIndex = Math.min(startIndex + this.LIMITE, this.libros.listaLibrosGenero(Guardado.getGenero()).size());
+            if (!filtrarGenero.listaLibrosGenero(Guardado.getGenero()).isEmpty()) {
+                int endIndex = Math.min(startIndex + this.LIMITE, this.filtrarGenero.listaLibrosGenero(Guardado.getGenero()).size());
 
                 // Obtener la sublista de libros para esta página
-                List<LibroDTO> libroLista = this.libros.listaLibrosGenero(Guardado.getGenero()).subList(startIndex, endIndex);
+                List<LibroDTO> libroLista = this.filtrarGenero.listaLibrosGenero(Guardado.getGenero()).subList(startIndex, endIndex);
 
                 librosCargados.clear();
                 librosCargados.addAll(libroLista);
@@ -309,14 +328,14 @@ public class BuscarPorGeneroForm extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, ("No se encontro ningun Libro"), "Busqueda", HEIGHT);
 
             }
-        } catch (NegocioException ex) {
+        } catch (FlitroException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Información", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    private void llenarCampos(List<LibroDTO> libroLista) throws NegocioException {
+    private void llenarCampos(List<LibroDTO> libroLista) throws FlitroException {
         if (libroLista.isEmpty()) {
-            throw new NegocioException("Ningun Libro");
+            throw new FlitroException("Ningun Libro");
         }
         for (int i = 0; i < libroLista.size(); i++) {
             botones[i].setVisible(true);
@@ -341,85 +360,26 @@ public class BuscarPorGeneroForm extends javax.swing.JFrame {
 
     }
 
-
-    private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-        contadorPagina++;
-        contPagina.setText(String.valueOf(contadorPagina));
-        if (this.botones[3].isEnabled()) {
-            this.pagina++;
-            this.cargarLibros();
-            this.verificarBotonesNavegacion();
-        }
-    }//GEN-LAST:event_btnSiguienteActionPerformed
     private void verificarBotonesNavegacion() {
         btnAtras.setEnabled(this.pagina > 0);
         btnSiguiente.setEnabled(this.botones[3].isEnabled());
 
     }
-    private void btnLibro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLibro1ActionPerformed
-        LibroDTO libro = librosCargados.get(0);
-        Guardado.setIsbn(libro.getISBNDTO());
-        Libro_presentacion libroForm = new Libro_presentacion();
-        libroForm.setVisible(true);
-    }//GEN-LAST:event_btnLibro1ActionPerformed
-
-    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
-        contadorPagina--;
-        contPagina.setText(String.valueOf(contadorPagina));
-        if (this.pagina > 0) {
-            this.pagina--;
-            this.cargarLibros();
-            this.verificarBotonesNavegacion();
-        }
-
-    }//GEN-LAST:event_btnAtrasActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void btnLibro2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLibro2ActionPerformed
-
-        LibroDTO libro = librosCargados.get(1);
-        Guardado.setIsbn(libro.getISBNDTO());
-        Libro_presentacion libroForm = new Libro_presentacion();
-        libroForm.setVisible(true);
-
-    }//GEN-LAST:event_btnLibro2ActionPerformed
-
-    private void btnLibro3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLibro3ActionPerformed
-        LibroDTO libro = librosCargados.get(2);
-        Guardado.setIsbn(libro.getISBNDTO());
-        Libro_presentacion libroForm = new Libro_presentacion();
-        libroForm.setVisible(true);
-
-    }//GEN-LAST:event_btnLibro3ActionPerformed
-
-    private void btnLibro4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLibro4ActionPerformed
-        LibroDTO libro = librosCargados.get(3);
-        Guardado.setIsbn(libro.getISBNDTO());
-        Libro_presentacion libroForm = new Libro_presentacion();
-        libroForm.setVisible(true);
-
-    }//GEN-LAST:event_btnLibro4ActionPerformed
-    private void brnUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_brnUsuarioActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnUsuario;
     private javax.swing.JButton btnAtras;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnLibro1;
     private javax.swing.JButton btnLibro2;
     private javax.swing.JButton btnLibro3;
     private javax.swing.JButton btnLibro4;
     private javax.swing.JButton btnSiguiente;
     private javax.swing.JLabel contPagina;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel titulo;
     private javax.swing.JLabel txtLibro1;
     private javax.swing.JLabel txtLibro2;
     private javax.swing.JLabel txtLibro3;

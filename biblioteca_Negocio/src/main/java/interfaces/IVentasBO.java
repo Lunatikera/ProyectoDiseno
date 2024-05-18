@@ -5,6 +5,7 @@
 package interfaces;
 
 import DTO.TablaVentaLibroDTO;
+import DTO.VentaDTO;
 import Excepcion.NegocioException;
 import java.util.List;
 
@@ -15,5 +16,7 @@ import java.util.List;
 public interface IVentasBO {
 
     public List<TablaVentaLibroDTO> consultarVentasPorISBN(String isbn) throws NegocioException;
+
+    public void agregarVenta(VentaDTO venta) throws NegocioException;
 
 }

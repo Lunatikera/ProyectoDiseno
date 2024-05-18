@@ -5,52 +5,60 @@
 package convertidores;
 
 import DTO.PrestamoDTO;
+import dao.Conexion;
 import entidades.AlumnoEntidad;
 import entidades.CopiaLibroPrestamoEntidad;
 import entidades.PrecioAdeudoEntidad;
 import entidades.PrestamoEntidad;
 import java.util.Calendar;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 
 /**
  *
  * @author Usuario
  */
 public class PrestamoConverter {
-     public static PrestamoEntidad convertirLibroDTOALibro(PrestamoDTO prestamoDTO) {
+
+    private static EntityManagerFactory entityManagerFactory;
+
+    static {
+        // Inicializa el EntityManagerFactory una vez
+        entityManagerFactory = Persistence.createEntityManagerFactory("BibliotecaJPA");
+    }
+
+    public static PrestamoEntidad convertirPrestamoDTOAPrestamo(PrestamoDTO prestamoDTO) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
         PrestamoEntidad prestamo = new PrestamoEntidad();
 
-        AlumnoEntidad alumno = entityManager.find(AlumnoEntidad.class, prestamoDTO.getIdAlumnoDTO());
+        // Verificar que el ID del alumno no sea nulo
+        Long idAlumno = prestamoDTO.getIdAlumnoDTO();
+        if (idAlumno == null) {
+            throw new RuntimeException("El ID del alumno no puede ser nulo.");
+        }
+        AlumnoEntidad alumno = entityManager.find(AlumnoEntidad.class, idAlumno);
         if (alumno != null) {
             prestamo.setAlumno(alumno);
         } else {
+            throw new RuntimeException("El alumno con ID " + idAlumno + " no fue encontrado.");
         }
 
-        CopiaLibroPrestamoEntidad copiaLibro = entityManager.find(CopiaLibroPrestamoEntidad.class, prestamoDTO.getIdLibroDTO());
+        // Verificar que el ID del libro no sea nulo
+        Long idLibro = prestamoDTO.getIdLibroDTO();
+        if (idLibro == null) {
+            throw new RuntimeException("El ID del libro no puede ser nulo.");
+        }
+        CopiaLibroPrestamoEntidad copiaLibro = entityManager.find(CopiaLibroPrestamoEntidad.class, idLibro);
         if (copiaLibro != null) {
             prestamo.setCopiaLibro(copiaLibro);
         } else {
+            throw new RuntimeException("La copia de libro con ID " + idLibro + " no fue encontrada.");
         }
 
-        if (prestamo.getFechaPrestamo() == null) {
-            Calendar fechaPrestamo = Calendar.getInstance();
-            prestamo.setFechaPrestamo(fechaPrestamo);
-
-            // Set fechaDevolucion to 10 days after fechaPrestamo
-            Calendar fechaDevolucion = (Calendar) fechaPrestamo.clone();
-            fechaDevolucion.add(Calendar.DAY_OF_MONTH, 10);
-            prestamo.setFechaDevolucion(fechaDevolucion);
-        }
-
-        // Retrieve PrecioAdeudoEntidad with id 1
-        PrecioAdeudoEntidad adeudo = entityManager.find(PrecioAdeudoEntidad.class, 1L);
-        if (adeudo != null) {
-            prestamo.setAdeudo(adeudo);
-        } else {
-            // Handle the case where the adeudo is not found, e.g., throw an exception or log an error
-        }
-
+        // Add more logic to set other fields of prestamo entity if needed
         return prestamo;
     }
 }
-
-

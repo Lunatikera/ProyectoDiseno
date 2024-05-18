@@ -4,13 +4,12 @@
  */
 package presentacion;
 
-import DTO.LibroDTO;
 import guardado.Guardado;
 import javax.swing.JButton;
 
 /**
  *
- * @author skevi
+ * @author Rios
  */
 public class BuscarForm extends javax.swing.JFrame {
 
@@ -22,8 +21,9 @@ public class BuscarForm extends javax.swing.JFrame {
      */
     public BuscarForm() {
         initComponents();
-        this.setSize(400, 700);
         this.setLocationRelativeTo(this);
+        this.setSize(1119, 639);
+        this.setResizable(false);
         botonesGeneroVisible = false;
         botones = new JButton[]{AccionButton, AventuraButton, ComediaButton, DramaButton, FantasiaButton, FiccionButton,
             HistoriaButton, InfantilButton, NovelaButton, PoesiaButton, RealidadButton, RomanceButton,
@@ -46,21 +46,14 @@ public class BuscarForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton3 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        IsbnButton = new javax.swing.JButton();
+        TituloButton = new javax.swing.JButton();
+        GeneroButton = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         brnUsuario = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        GeneroButton = new javax.swing.JButton();
-        TituloButton = new javax.swing.JButton();
-        IsbnButton = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
         FiccionButton = new javax.swing.JButton();
         DramaButton = new javax.swing.JButton();
         TerrorButton = new javax.swing.JButton();
@@ -76,22 +69,45 @@ public class BuscarForm extends javax.swing.JFrame {
         ComediaButton = new javax.swing.JButton();
         FantasiaButton = new javax.swing.JButton();
 
-        jButton3.setText("jButton2");
-
-        jButton6.setText("jButton2");
-
-        jButton12.setText("jButton2");
-
-        jButton13.setText("jButton2");
-
-        jButton14.setText("jButton2");
-
-        jButton15.setText("jButton2");
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(51, 51, 51));
+        setTitle("Biblioteca");
+        setBackground(new java.awt.Color(88, 88, 95));
 
-        jPanel2.setBackground(new java.awt.Color(51, 102, 255));
+        jPanel1.setBackground(new java.awt.Color(88, 88, 95));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        IsbnButton.setBackground(new java.awt.Color(88, 138, 135));
+        IsbnButton.setText("ISBN");
+        IsbnButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IsbnButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(IsbnButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(414, 206, 190, 50));
+
+        TituloButton.setBackground(new java.awt.Color(88, 138, 135));
+        TituloButton.setText("Titulo");
+        TituloButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TituloButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(TituloButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(414, 144, 190, 50));
+
+        GeneroButton.setBackground(new java.awt.Color(88, 138, 135));
+        GeneroButton.setText("Genero");
+        GeneroButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GeneroButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(GeneroButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(414, 268, 190, 50));
+
+        jLabel2.setFont(new java.awt.Font("Franklin Gothic Demi Cond", 0, 48)); // NOI18N
+        jLabel2.setText("Buscar por:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, -1, -1));
+
+        jPanel2.setBackground(new java.awt.Color(88, 138, 135));
 
         brnUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/flecha-pequena-izquierda.png"))); // NOI18N
         brnUsuario.setContentAreaFilled(false);
@@ -101,67 +117,26 @@ public class BuscarForm extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/menu-hamburguesa.png"))); // NOI18N
-        jButton1.setContentAreaFilled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Busqueda");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(brnUsuario)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(62, 62, 62)
-                .addComponent(jButton1)
-                .addGap(25, 25, 25))
+                .addComponent(brnUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1060, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(brnUsuario)
-                            .addComponent(jButton1)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addComponent(brnUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
-        jLabel2.setText("Buscar por:");
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1138, 70));
 
-        GeneroButton.setText("Genero");
-        GeneroButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GeneroButtonActionPerformed(evt);
-            }
-        });
-
-        TituloButton.setText("Titulo");
-        TituloButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TituloButtonActionPerformed(evt);
-            }
-        });
-
-        IsbnButton.setText("ISBN");
-        IsbnButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IsbnButtonActionPerformed(evt);
-            }
-        });
+        jPanel3.setBackground(new java.awt.Color(88, 88, 95));
 
         FiccionButton.setText("Ficcion");
         FiccionButton.addActionListener(new java.awt.event.ActionListener() {
@@ -261,121 +236,91 @@ public class BuscarForm extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(SuspensoButton)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(DramaButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(PoesiaButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(HistoriaButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(RealidadButton, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE))
+                            .addComponent(RealidadButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(29, 29, 29)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(InfantilButton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(AventuraButton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(AccionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(NovelaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(31, 31, 31)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(ComediaButton, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(ComediaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, Short.MAX_VALUE)
                             .addComponent(TerrorButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(FiccionButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(FantasiaButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(RomanceButton, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(RealidadButton)
                         .addGap(15, 15, 15)
                         .addComponent(DramaButton))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(InfantilButton)
                             .addComponent(TerrorButton))
                         .addGap(15, 15, 15)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(NovelaButton)
                             .addComponent(ComediaButton))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(AventuraButton)
                             .addComponent(PoesiaButton)
                             .addComponent(FantasiaButton))))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(HistoriaButton)
                         .addComponent(AccionButton))
                     .addComponent(FiccionButton))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SuspensoButton)
                     .addComponent(RomanceButton))
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 330, 420, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(104, 104, 104)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabel2))
-                    .addComponent(IsbnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(GeneroButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TituloButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(107, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(jLabel2)
-                .addGap(42, 42, 42)
-                .addComponent(TituloButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(IsbnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(GeneroButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void toggleBotonesGenero() {
-        botonesGeneroVisible = !botonesGeneroVisible;
-        for (JButton boton : botones) {
-            boton.setVisible(botonesGeneroVisible);
-        }
-    }
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void brnUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_brnUsuarioActionPerformed
+    private void IsbnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IsbnButtonActionPerformed
+        BuscarPorISBNForm buscarISBN = new BuscarPorISBNForm();
+        buscarISBN.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_IsbnButtonActionPerformed
 
     private void TituloButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TituloButtonActionPerformed
         BuscarPorTituloForm buscarTitulo = new BuscarPorTituloForm();
@@ -383,112 +328,15 @@ public class BuscarForm extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_TituloButtonActionPerformed
 
-    private void IsbnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IsbnButtonActionPerformed
-        BuscarPorISBNForm buscarISBN = new BuscarPorISBNForm();
-        buscarISBN.setVisible(true);
-        this.dispose();
-
-    }//GEN-LAST:event_IsbnButtonActionPerformed
-
     private void GeneroButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GeneroButtonActionPerformed
         this.toggleBotonesGenero();
     }//GEN-LAST:event_GeneroButtonActionPerformed
 
-    private void DramaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DramaButtonActionPerformed
-        String genero = DramaButton.getText();  
-        Guardado.setGenero(genero);
-        BuscarPorGeneroForm buscarGenero = new BuscarPorGeneroForm();
-        buscarGenero.setVisible(true);
+    private void brnUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnUsuarioActionPerformed
+        MenuForm menu = new MenuForm();
+        menu.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_DramaButtonActionPerformed
-
-    private void ComediaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComediaButtonActionPerformed
-        String genero = ComediaButton.getText();
-        Guardado.setGenero(genero);
-        BuscarPorGeneroForm buscarGenero = new BuscarPorGeneroForm();
-        buscarGenero.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_ComediaButtonActionPerformed
-
-    private void PoesiaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PoesiaButtonActionPerformed
-        String genero = PoesiaButton.getText();
-        Guardado.setGenero(genero);
-        BuscarPorGeneroForm buscarGenero = new BuscarPorGeneroForm();
-        buscarGenero.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_PoesiaButtonActionPerformed
-
-    private void RealidadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RealidadButtonActionPerformed
-        String genero = RealidadButton.getText();
-        Guardado.setGenero(genero);
-        BuscarPorGeneroForm buscarGenero = new BuscarPorGeneroForm();
-        buscarGenero.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_RealidadButtonActionPerformed
-
-    private void FantasiaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FantasiaButtonActionPerformed
-        String genero = FantasiaButton.getText();
-        Guardado.setGenero(genero);
-        BuscarPorGeneroForm buscarGenero = new BuscarPorGeneroForm();
-        buscarGenero.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_FantasiaButtonActionPerformed
-
-    private void InfantilButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InfantilButtonActionPerformed
-        String genero = InfantilButton.getText();
-        Guardado.setGenero(genero);
-        BuscarPorGeneroForm buscarGenero = new BuscarPorGeneroForm();
-        buscarGenero.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_InfantilButtonActionPerformed
-
-    private void TerrorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TerrorButtonActionPerformed
-        String genero = TerrorButton.getText();
-        Guardado.setGenero(genero);
-        BuscarPorGeneroForm buscarGenero = new BuscarPorGeneroForm();
-        buscarGenero.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_TerrorButtonActionPerformed
-
-    private void NovelaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NovelaButtonActionPerformed
-        String genero = NovelaButton.getText();
-        Guardado.setGenero(genero);
-        BuscarPorGeneroForm buscarGenero = new BuscarPorGeneroForm();
-        buscarGenero.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_NovelaButtonActionPerformed
-
-    private void HistoriaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistoriaButtonActionPerformed
-        String genero = HistoriaButton.getText();
-        Guardado.setGenero(genero);
-        BuscarPorGeneroForm buscarGenero = new BuscarPorGeneroForm();
-        buscarGenero.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_HistoriaButtonActionPerformed
-
-    private void SuspensoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SuspensoButtonActionPerformed
-        String genero = SuspensoButton.getText();
-        Guardado.setGenero(genero);
-        BuscarPorGeneroForm buscarGenero = new BuscarPorGeneroForm();
-
-    }//GEN-LAST:event_SuspensoButtonActionPerformed
-
-    private void AventuraButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AventuraButtonActionPerformed
-        String genero = AventuraButton.getText();
-        Guardado.setGenero(genero);
-        BuscarPorGeneroForm buscarGenero = new BuscarPorGeneroForm();
-        buscarGenero.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_AventuraButtonActionPerformed
-
-    private void AccionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccionButtonActionPerformed
-        String genero = AccionButton.getText();
-        Guardado.setGenero(genero);
-        BuscarPorGeneroForm buscarGenero = new BuscarPorGeneroForm();
-        buscarGenero.setVisible(true);
-        this.dispose();
-
-    }//GEN-LAST:event_AccionButtonActionPerformed
+    }//GEN-LAST:event_brnUsuarioActionPerformed
 
     private void FiccionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FiccionButtonActionPerformed
         String genero = FiccionButton.getText();
@@ -498,6 +346,38 @@ public class BuscarForm extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_FiccionButtonActionPerformed
 
+    private void DramaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DramaButtonActionPerformed
+        String genero = DramaButton.getText();
+        Guardado.setGenero(genero);
+        BuscarPorGeneroForm buscarGenero = new BuscarPorGeneroForm();
+        buscarGenero.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_DramaButtonActionPerformed
+
+    private void TerrorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TerrorButtonActionPerformed
+        String genero = TerrorButton.getText();
+        Guardado.setGenero(genero);
+        BuscarPorGeneroForm buscarGenero = new BuscarPorGeneroForm();
+        buscarGenero.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_TerrorButtonActionPerformed
+
+    private void HistoriaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistoriaButtonActionPerformed
+        String genero = HistoriaButton.getText();
+        Guardado.setGenero(genero);
+        BuscarPorGeneroForm buscarGenero = new BuscarPorGeneroForm();
+        buscarGenero.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_HistoriaButtonActionPerformed
+
+    private void NovelaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NovelaButtonActionPerformed
+        String genero = NovelaButton.getText();
+        Guardado.setGenero(genero);
+        BuscarPorGeneroForm buscarGenero = new BuscarPorGeneroForm();
+        buscarGenero.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_NovelaButtonActionPerformed
+
     private void RomanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RomanceButtonActionPerformed
         String genero = RomanceButton.getText();
         Guardado.setGenero(genero);
@@ -506,6 +386,74 @@ public class BuscarForm extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_RomanceButtonActionPerformed
 
+    private void RealidadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RealidadButtonActionPerformed
+        String genero = RealidadButton.getText();
+        Guardado.setGenero(genero);
+        BuscarPorGeneroForm buscarGenero = new BuscarPorGeneroForm();
+        buscarGenero.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_RealidadButtonActionPerformed
+
+    private void SuspensoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SuspensoButtonActionPerformed
+        String genero = SuspensoButton.getText();
+        Guardado.setGenero(genero);
+        BuscarPorGeneroForm buscarGenero = new BuscarPorGeneroForm();
+    }//GEN-LAST:event_SuspensoButtonActionPerformed
+
+    private void AccionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccionButtonActionPerformed
+        String genero = AccionButton.getText();
+        Guardado.setGenero(genero);
+        BuscarPorGeneroForm buscarGenero = new BuscarPorGeneroForm();
+        buscarGenero.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_AccionButtonActionPerformed
+
+    private void PoesiaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PoesiaButtonActionPerformed
+        String genero = PoesiaButton.getText();
+        Guardado.setGenero(genero);
+        BuscarPorGeneroForm buscarGenero = new BuscarPorGeneroForm();
+        buscarGenero.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_PoesiaButtonActionPerformed
+
+    private void AventuraButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AventuraButtonActionPerformed
+        String genero = AventuraButton.getText();
+        Guardado.setGenero(genero);
+        BuscarPorGeneroForm buscarGenero = new BuscarPorGeneroForm();
+        buscarGenero.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_AventuraButtonActionPerformed
+
+    private void InfantilButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InfantilButtonActionPerformed
+        String genero = InfantilButton.getText();
+        Guardado.setGenero(genero);
+        BuscarPorGeneroForm buscarGenero = new BuscarPorGeneroForm();
+        buscarGenero.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_InfantilButtonActionPerformed
+
+    private void ComediaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComediaButtonActionPerformed
+        String genero = ComediaButton.getText();
+        Guardado.setGenero(genero);
+        BuscarPorGeneroForm buscarGenero = new BuscarPorGeneroForm();
+        buscarGenero.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_ComediaButtonActionPerformed
+
+    private void FantasiaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FantasiaButtonActionPerformed
+        String genero = FantasiaButton.getText();
+        Guardado.setGenero(genero);
+        BuscarPorGeneroForm buscarGenero = new BuscarPorGeneroForm();
+        buscarGenero.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_FantasiaButtonActionPerformed
+
+    private void toggleBotonesGenero() {
+        botonesGeneroVisible = !botonesGeneroVisible;
+        for (JButton boton : botones) {
+            boton.setVisible(botonesGeneroVisible);
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -603,6 +551,198 @@ public class BuscarForm extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -632,16 +772,9 @@ public class BuscarForm extends javax.swing.JFrame {
     private javax.swing.JButton TerrorButton;
     private javax.swing.JButton TituloButton;
     private javax.swing.JButton brnUsuario;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 }

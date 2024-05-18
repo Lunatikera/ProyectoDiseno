@@ -5,9 +5,13 @@
 package Negocio;
 
 import DTO.TablaVentaLibroDTO;
+import DTO.VentaDTO;
 import Excepcion.NegocioException;
+import convertidores.PrestamoConverter;
 import convertidores.TablaVentaConverter;
+import convertidores.VentaConverter;
 import dao.VentaDAO;
+import excepciones.PrestamoException;
 import excepciones.VentaException;
 import interfaces.IVentaDAO;
 import interfaces.IVentasBO;
@@ -40,6 +44,13 @@ public class VentasBO implements IVentasBO {
             throw new NegocioException("NO se puedo recolectar la informacion de los prestamos");
         }
     }
+
+    @Override
+    public void agregarVenta(VentaDTO venta) throws NegocioException {
+        try {
+            ventaDAO.agregarVenta(VentaConverter.convertirPrestamoDTOAPrestamo(venta));
+        } catch (VentaException ex) {
+            throw new NegocioException("NO se puedo agregar la informacion de la venta");
+        }
+    }
 }
-
-

@@ -6,9 +6,11 @@ package Negocio;
 
 import DTO.AlumnoAdeudoDTO;
 import DTO.AlumnoInicioSesionDTO;
+import DTO.AlumnoPrestamoDTO;
 import Excepcion.NegocioException;
 import convertidores.AlumnoAdeudoConverter;
 import convertidores.AlumnoIniciarSesionConverter;
+import convertidores.AlumnoPrestamoVentaConvertidor;
 import dao.AlumnoDAO;
 import entidades.AlumnoEntidad;
 import excepciones.AlumnoExcepcion;
@@ -68,6 +70,16 @@ public class AlumnoBO implements IAlumnoBO {
             return alumno;
         } catch (AlumnoExcepcion ex) {
             throw new NegocioException("No se pudo consultar al alumno");
+        }
+    }
+    
+     @Override
+    public AlumnoPrestamoDTO consultarAlumnoPrestamo(String nombreUsuario) throws NegocioException {
+        try {
+            AlumnoPrestamoDTO alumno = AlumnoPrestamoVentaConvertidor.convertirAlumnoAAlumnoDTO(alumnoDAO.consultarAlumno(nombreUsuario));
+            return alumno;
+        } catch (AlumnoExcepcion ex) {
+            throw new NegocioException("No se pudo consultar al alumno para prestamo");
         }
     }
 

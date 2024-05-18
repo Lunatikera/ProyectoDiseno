@@ -6,6 +6,7 @@ package interfaces;
 
 import DTO.AlumnoAdeudoDTO;
 import DTO.AlumnoInicioSesionDTO;
+import DTO.AlumnoPrestamoDTO;
 import Excepcion.NegocioException;
 import java.util.List;
 
@@ -21,4 +22,5 @@ public interface IAlumnoBO {
 
     public AlumnoAdeudoDTO consultarAlumno(String nombreUsuario) throws NegocioException;
 
+    public AlumnoPrestamoDTO consultarAlumnoPrestamo(String nombreUsuario) throws NegocioException;
 }

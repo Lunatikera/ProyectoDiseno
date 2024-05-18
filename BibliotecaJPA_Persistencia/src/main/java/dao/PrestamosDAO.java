@@ -35,7 +35,7 @@ public class PrestamosDAO implements IPrestamosDAO {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
-            throw new PrestamoException("Error saving PrestamoEntidad: " + e.getMessage() );
+            throw new PrestamoException("Error al guardar el prestamo: " + e.getMessage() );
         } finally {
             entityManager.close();
         }

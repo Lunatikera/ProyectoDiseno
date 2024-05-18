@@ -27,9 +27,6 @@ public class AlumnoEntidad extends PersonaEntidad implements Serializable {
     @Column(name = "correo", nullable = false)
     private String correo;
     
-    @Column(name = "adeudo", nullable = false)
-    private double adeudo;
-
     @OneToMany(mappedBy = "alumno", cascade = {CascadeType.PERSIST})
     private List<PrestamoEntidad> prestamo;
 
@@ -71,13 +68,7 @@ public class AlumnoEntidad extends PersonaEntidad implements Serializable {
         this.correo = correo;
     }
 
-    public double getAdeudo() {
-        return adeudo;
-    }
 
-    public void setAdeudo(double adeudo) {
-        this.adeudo = adeudo;
-    }
 
     public List<PrestamoEntidad> getPrestamo() {
         return prestamo;

@@ -84,7 +84,7 @@ public class PrestamoEntidad implements Serializable {
     public void setAdeudo(PrecioAdeudoEntidad adeudo) {
         this.adeudo = adeudo;
     }
-    
+
     public AlumnoEntidad getAlumno() {
         return alumno;
     }
@@ -109,7 +109,7 @@ public class PrestamoEntidad implements Serializable {
         this.id_prestamo = id_prestamo;
     }
 
-    public EstadoPrestamo getEstado(){
+    public EstadoPrestamo getEstado() {
         return estado;
     }
 
@@ -140,10 +140,12 @@ public class PrestamoEntidad implements Serializable {
     public void setId(Long id) {
         this.id_prestamo = id;
     }
+
     @PrePersist
     protected void onCreate() {
         if (this.fechaPrestamo == null) {
             this.fechaPrestamo = Calendar.getInstance();
+            fechaPrestamo.add(Calendar.HOUR_OF_DAY, -7);
         }
         if (this.fechaDevolucion == null) {
             this.fechaDevolucion = (Calendar) this.fechaPrestamo.clone();
@@ -151,7 +153,7 @@ public class PrestamoEntidad implements Serializable {
         }
         if (this.adeudo == null) {
             this.adeudo = new PrecioAdeudoEntidad();
-            this.adeudo.setId(1L); 
+            this.adeudo.setId(1L);
         }
     }
 

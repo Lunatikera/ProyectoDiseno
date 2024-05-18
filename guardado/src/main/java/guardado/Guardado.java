@@ -9,42 +9,33 @@ package guardado;
  * @author skevi
  */
 public class Guardado {
-    
-    public static int idAlumno;
-    private static int idLibro;
-    private static int idAdmin;
+
+    private static Long idAlumno;
+    private static Long idLibro;
+    private static Long idAdmin;
     private static String isbn;
-    private static String correoAlumno;
+    private static String usuarioAlumno;
+    private static String usuarioAdministrador;
     private static String genero;
+    private static double precioVenta;
 
     public Guardado() {
-    }
-
-    public Guardado(int idAlumno, int idLibro, int idAdmin) {
-        this.idAlumno = idAlumno;
-        this.idLibro = idLibro;
-        this.idAdmin = idAdmin;
-    }
-
-
-    public int getIdAlumno() {
-        return idAlumno;
     }
 
     public static void setGenero(String genero) {
         Guardado.genero = genero;
     }
 
+    public static double getPrecioVenta() {
+        return precioVenta;
+    }
+
+    public static void setPrecioVenta(double precioVenta) {
+        Guardado.precioVenta = precioVenta;
+    }
+
     public static String getGenero() {
         return genero;
-    }
-
-    public void setIdAlumno(int idAlumno) {
-        this.idAlumno = idAlumno;
-    }
-
-    public int getIdLibro() {
-        return idLibro;
     }
 
     public static String getIsbn() {
@@ -55,26 +46,44 @@ public class Guardado {
         Guardado.isbn = isbn;
     }
 
-    public void setIdLibro(int idLibro) {
-        this.idLibro = idLibro;
+    public static Long getIdAlumno() {
+        return idAlumno;
     }
 
-    public int getIdAdmin() {
+    public static void setIdAlumno(Long idAlumno) {
+        Guardado.idAlumno = idAlumno;
+    }
+
+    public static Long getIdLibro() {
+        return idLibro;
+    }
+
+    public static void setIdLibro(Long idLibro) {
+        Guardado.idLibro = idLibro;
+    }
+
+    public static Long getIdAdmin() {
         return idAdmin;
     }
 
-    public void setIdAdmin(int idAdmin) {
-        this.idAdmin = idAdmin;
+    public static void setIdAdmin(Long idAdmin) {
+        Guardado.idAdmin = idAdmin;
     }
 
-    public String getCorreoAlumno() {
-        return correoAlumno;
+    public static String getUsuarioAlumno() {
+        return usuarioAlumno;
     }
 
-    public void setCorreoAlumno(String correoAlumno) {
-        Guardado.correoAlumno = correoAlumno;
+    public static void setUsuarioAlumno(String usuarioAlumno) {
+        Guardado.usuarioAlumno = usuarioAlumno;
     }
-    
-    
-  
+
+    public static String getUsuarioAdministrador() {
+        return usuarioAdministrador;
+    }
+
+    public static void setUsuarioAdministrador(String usuarioAdministrador) {
+        Guardado.usuarioAdministrador = usuarioAdministrador;
+    }
+
 }

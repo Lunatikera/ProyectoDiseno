@@ -4,7 +4,7 @@
  */
 package interfaces;
 
-import DTO.AdministradorDTO;
+import DTO.AdministradorInicioSesionDTO;
 import Excepcion.NegocioException;
 import java.util.List;
 
@@ -14,6 +14,6 @@ import java.util.List;
  */
 public interface IAdministradorBO {
 
-    public List<AdministradorDTO> listaAdministradores() throws NegocioException;
+    public List<AdministradorInicioSesionDTO> listaAdministradores() throws NegocioException;
 
 }

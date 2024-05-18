@@ -11,11 +11,13 @@ import java.util.Calendar;
  * @author skevi
  */
 public class LibroDTO {
+    private Long id_libro;
     private String ISBNDTO;
     private String tituloDTO;
     private String autorDTO;
     private String editorialDTO;
     private String generoDTO;
+    private double precioDTO;
     private Calendar fechaDTO;
     private byte[] portadaDTO;
     private int paginasDTO;
@@ -34,6 +36,14 @@ public class LibroDTO {
 
     public String getTituloDTO() {
         return tituloDTO;
+    }
+
+    public double getPrecioDTO() {
+        return precioDTO;
+    }
+
+    public void setPrecioDTO(double precioDTO) {
+        this.precioDTO = precioDTO;
     }
 
     public void setTituloDTO(String tituloDTO) {
@@ -62,6 +72,14 @@ public class LibroDTO {
 
     public void setGeneroDTO(String generoDTO) {
         this.generoDTO = generoDTO;
+    }
+
+    public Long getId_libro() {
+        return id_libro;
+    }
+
+    public void setId_libro(Long id_libro) {
+        this.id_libro = id_libro;
     }
 
     public Calendar getFechaDTO() {

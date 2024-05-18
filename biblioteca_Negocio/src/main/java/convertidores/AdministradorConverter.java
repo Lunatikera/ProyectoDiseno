@@ -4,7 +4,7 @@
  */
 package convertidores;
 
-import DTO.AdministradorDTO;
+import DTO.AdministradorInicioSesionDTO;
 import entidades.AdministradorEntidad;
 
 /**
@@ -13,14 +13,14 @@ import entidades.AdministradorEntidad;
  */
 public class AdministradorConverter {
     
-    public static AdministradorDTO convertirAdministradorAAdministradorDTO(AdministradorEntidad administrador) {
-        AdministradorDTO administradorDTO = new AdministradorDTO();
+    public static AdministradorInicioSesionDTO convertirAdministradorAAdministradorDTO(AdministradorEntidad administrador) {
+        AdministradorInicioSesionDTO administradorDTO = new AdministradorInicioSesionDTO();
         administradorDTO.setNombreUsuario(administrador.getNombreUsuario());
-        administradorDTO.setContraseñaDTO(administrador.getPassword());
+        administradorDTO.setPasswordDTO(administrador.getPassword());
         return administradorDTO;
     }
     
-    public static AdministradorEntidad convertirAdministradorDTOAAdmnistrador(AdministradorDTO administradorDTO) {
+    public static AdministradorEntidad convertirAdministradorDTOAAdmnistrador(AdministradorInicioSesionDTO administradorDTO) {
         AdministradorEntidad administrador = new AdministradorEntidad();
         administrador.setNombreUsuario(administradorDTO.getNombreUsuario());
         administrador.setPassword(administrador.getPassword());

@@ -4,6 +4,7 @@
  */
 package interfaces;
 
+import entidades.VentaEntidad;
 import excepciones.VentaException;
 import java.util.List;
 
@@ -12,6 +13,8 @@ import java.util.List;
  * @author Usuario
  */
 public interface IVentaDAO {
+
     public List<Object[]> consultarVentaPorISBN(String isbn) throws VentaException;
 
+    public void agregarVenta(VentaEntidad venta) throws VentaException;
 }

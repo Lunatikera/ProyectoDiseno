@@ -34,9 +34,7 @@ public class PersonaEntidad implements Serializable {
     @Column(name = "nombreUsuario", unique = true, nullable = false)
     private String nombreUsuario;
 
-    @Column(name = "rol", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private RolesPersona rol;
+
 
     @Column(name = "password", nullable = false)
     private String password;
@@ -47,7 +45,6 @@ public class PersonaEntidad implements Serializable {
     public PersonaEntidad(String nombreUsuario, RolesPersona rol, String password) {
         this.nombreUsuario = nombreUsuario;
         this.password = password;
-        this.rol=rol;
     }
 
     public Long getId() {
@@ -60,14 +57,6 @@ public class PersonaEntidad implements Serializable {
 
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
-    }
-
-    public RolesPersona getRol() {
-        return rol;
-    }
-
-    public void setRol(RolesPersona rol) {
-        this.rol = rol;
     }
 
     public String getPassword() {

@@ -16,9 +16,11 @@ public class LibroConverter {
 
     public static LibroDTO convertirLibroALibroDTO(LibroEntidad libro) {
         LibroDTO libroDTO = new LibroDTO();
+        libroDTO.setId_libro(libro.getId());
         libroDTO.setISBNDTO(libro.getIsbn());
         libroDTO.setTituloDTO(libro.getTitulo());
         libroDTO.setEditorialDTO(libro.getEditorial());
+        libroDTO.setPrecioDTO(libro.getPrecio());
         libroDTO.setPortadaDTO(libro.getPortada());
         libroDTO.setGeneroDTO(libro.getGenero().toString());
         libroDTO.setAutorDTO(libro.getAutor());
@@ -29,9 +31,11 @@ public class LibroConverter {
 
     public static LibroEntidad convertirLibroDTOALibro(LibroDTO libroDTO) {
         LibroEntidad libro = new LibroEntidad();
+        libro.setId(libroDTO.getId_libro());
         libro.setIsbn(libroDTO.getISBNDTO());
         libro.setPortada(libroDTO.getPortadaDTO());
         libro.setTitulo(libroDTO.getTituloDTO());
+        libro.setPrecio(libroDTO.getPrecioDTO());
         libro.setAutor(libroDTO.getAutorDTO());
         libro.setEditorial(libroDTO.getEditorialDTO());
         libro.setGenero(GeneroLibros.valueOf(libroDTO.getGeneroDTO()));

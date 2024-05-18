@@ -32,6 +32,7 @@ entidades\AlumnoEntidad_.class
 dao\Conexion.class
 entidades\PrestamoEntidad_.class
 entidades\PrecioAdeudoEntidad.class
+dao\PersonaDAO.class
 dao\AdministradorDAO.class
 entidades\CopiaLibroPrestamoEntidad_.class
 dao\PrestamosDAO.class

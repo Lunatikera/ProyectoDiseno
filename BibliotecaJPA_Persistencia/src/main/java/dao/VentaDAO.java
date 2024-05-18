@@ -4,6 +4,7 @@
  */
 package dao;
 
+import entidades.VentaEntidad;
 import excepciones.PrestamoException;
 import excepciones.VentaException;
 import interfaces.IVentaDAO;
@@ -23,6 +24,25 @@ public class VentaDAO implements IVentaDAO{
         this.entityManagerFactory = Conexion.getInstance();
     }
 
+       @Override
+      public void agregarVenta(VentaEntidad venta) throws VentaException {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(venta); // 
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
+            throw new VentaException("Error al guardar la venta: " + e.getMessage() );
+        } finally {
+            entityManager.close();
+        }
+    }
+    
+    
+    
     public List<Object[]> consultarVentaPorISBN(String isbn) throws VentaException {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 

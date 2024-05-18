@@ -4,6 +4,7 @@
  */
 package interfaces;
 
+import DTO.PrestamoDTO;
 import DTO.TablaPrestamoLibroDTO;
 import Excepcion.NegocioException;
 import entidades.PrestamoEntidad;
@@ -17,4 +18,5 @@ public interface IPrestamosBO {
 
     public List<TablaPrestamoLibroDTO> consultarPrestamosPorISBN(String isbn) throws NegocioException;
 
+    public void agregarPrestamo(PrestamoDTO prestamo) throws NegocioException;
 }

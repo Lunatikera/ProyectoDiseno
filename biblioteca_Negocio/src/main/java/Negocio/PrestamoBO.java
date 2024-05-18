@@ -7,16 +7,15 @@ package Negocio;
 import DTO.PrestamoDTO;
 import DTO.TablaPrestamoLibroDTO;
 import Excepcion.NegocioException;
-import static convertidores.LibroConverter.convertirLibroDTOALibro;
+import convertidores.PrestamoConverter;
 import convertidores.TablaPrestamoConvertidor;
 import dao.PrestamosDAO;
-import entidades.PrestamoEntidad;
-import excepciones.LibroExcepcion;
 import excepciones.PrestamoException;
 import interfaces.IPrestamosBO;
 import interfaces.IPrestamosDAO;
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  *
@@ -46,10 +45,11 @@ public class PrestamoBO implements IPrestamosBO {
     }
 
     public void agregarPrestamo(PrestamoDTO prestamo) throws NegocioException {
-    //try {
-        //   prestamoDAO.agregarPrestamo(convertirLibroDTOALibro(prestamo));
-        //} catch (PrestamoException ex) {
-        //    throw new NegocioException("No se pudo agregar el libro");
-      //  }
+        try {
+            prestamoDAO.agregarPrestamo(PrestamoConverter.convertirPrestamoDTOAPrestamo(prestamo));
+        } catch (PrestamoException ex) {
+            throw new NegocioException("NO se puedo agregar la informacion de los prestamos");
+        }
+      
     }
 }

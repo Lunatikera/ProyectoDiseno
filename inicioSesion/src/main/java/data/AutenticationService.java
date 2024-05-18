@@ -4,25 +4,39 @@
  */
 package data;
 
+import DTO.AdministradorInicioSesionDTO;
 import DTO.AlumnoInicioSesionDTO;
-import dao.AlumnoDAO;
 import Excepcion.AutenticationException;
 import Excepcion.NegocioException;
+import Negocio.AdministradorBO;
+import Negocio.AlumnoBO;
+import static com.mysql.cj.conf.PropertyKey.logger;
+import guardado.Guardado;
+import interfaces.IAdministradorBO;
 import interfaces.IAlumnoBO;
-import interfaz.IAutenticationService;
+import interfaz.IAuntenticationService;
+import java.util.List;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author skevi
  */
-public class AutenticationService implements IAutenticationService {
+public class AutenticationService implements IAuntenticationService {
 
-    private IAlumnoBO alumnoBO;
+    private static final Logger logger = Logger.getLogger(AutenticationService.class.getName());
 
-    public AutenticationService(IAlumnoBO alumnoBO) {
-        this.alumnoBO = alumnoBO;
+    IAlumnoBO alumno;
+    IAdministradorBO administrador;
+    Guardado guardar = new Guardado();
+
+    public AutenticationService() {
+        this.alumno = new AlumnoBO();
+        this.administrador = new AdministradorBO();
+
     }
 
     /**
@@ -39,42 +53,57 @@ public class AutenticationService implements IAutenticationService {
      */
     public boolean validarAlumno(String nombreUsuario, String contraseña) throws AutenticationException {
         try {
-            // Obtenemos la instancia del SessionManager
-            SessionManager sessionManager = SessionManager.getInstance();
+            List<AlumnoInicioSesionDTO> listaAlumnos = alumno.listaAlumnosInicioSesion();
+            if (listaAlumnos.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "No hay alumnos registrados.");
+                return false;
+            }
+            Optional<AlumnoInicioSesionDTO> alumnoOptional = listaAlumnos.stream()
+                    .filter(a -> a.getNombreUsuario().equalsIgnoreCase(nombreUsuario) && a.getPasswordDTO().equalsIgnoreCase(contraseña))
+                    .findFirst();
 
-            // Recorremos la lista de alumnos
-            for (AlumnoInicioSesionDTO alumno : alumnoBO.listaAlumnos()) {
-                // Comprobamos si las credenciales coinciden
-                if (alumno.getNombreUsuario().equalsIgnoreCase(nombreUsuario)
-                        && alumno.getPasswordDTO().equalsIgnoreCase(contraseña)) {
-                    // Si coinciden, guardamos el ID del usuario en la sesión
-                    sessionManager.setUserName(alumno.getNombreUsuario());
-                    return true;
-                }
+            if (alumnoOptional.isPresent()) {
+                guardar.setUsuarioAlumno(nombreUsuario);
+                return true;
+            } else {
+                return false;
             }
         } catch (NegocioException ex) {
             throw new AutenticationException("No se pudo verificar las credenciales");
         }
-
-        // Si no se encontraron credenciales válidas, lanzamos una excepción
-        throw new AutenticationException("Error en correo o contraseña");
     }
 
-    public AlumnoInicioSesionDTO alumnoActivo() throws NegocioException, AutenticationException {
-        SessionManager sessionManager = SessionManager.getInstance();
-        for (AlumnoInicioSesionDTO alumno : alumnoBO.listaAlumnos()) {
-            // Comprobamos si las credenciales coinciden
-            if (alumno.getNombreUsuario().equalsIgnoreCase(sessionManager.getUserName()) ) {
-               return alumno; 
+    /**
+     *
+     * @param nombreUsuario
+     * @param contraseña
+     * @return
+     * @throws AutenticationException
+     */
+    public boolean validarAdministrador(String nombreUsuario, String contraseña) throws AutenticationException {
+        try {
+            List<AdministradorInicioSesionDTO> listaAdmin = administrador.listaAdministradores();
+        System.out.println("Lista de administradores: " + listaAdmin); // Print the list of administrators
+
+            // Verificar si la lista de administradores está vacía
+            if (listaAdmin.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "No hay administradores registrados.");
+                return false;
             }
-        }
+
+            Optional<AdministradorInicioSesionDTO> adminOptional = listaAdmin.stream()
+                    .filter(a -> a.getNombreUsuario().equalsIgnoreCase(nombreUsuario) && a.getPasswordDTO().equalsIgnoreCase(contraseña))
+                    .findFirst();
+
+            if (adminOptional.isPresent()) {
+                guardar.setUsuarioAdministrador(nombreUsuario);
+                return true;
+            } else {
+                System.out.println("No se encontró ningún administrador con las credenciales proporcionadas"); // Print a message if the administrator is not found
+                return false;
+            }
+        } catch (NegocioException ex) {
             throw new AutenticationException("No se pudo verificar las credenciales");
+        }
     }
-
-    
-
-    public boolean validarAdministrador(int id, String contraseña) {
-        return false;
-    }
-
 }
